@@ -26,7 +26,6 @@ dependencies {
 }
 
 tasks {
-
     processResources {
         inputs.property("version", project.version)
         filesMatching("fabric.mod.json") {
@@ -62,15 +61,20 @@ tasks {
         kotlinOptions.jvmTarget = "17"
     }
 
+    task<Exec>("refmapper") {
+        commandLine(
+            "java",
+            "-jar",
+            "refmapper-2.5.jar",
+            "build/libs/${base.archivesName.get()}-$version.jar",
+            "build/libs/${base.archivesName.get()}-$version-refmap.jar",
+            "refmapper/tiny",
+            ".gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-67dccd55cc/${project.extra["minecraft_version"] as String}-net.fabricmc.yarn.${(project.extra["minecraft_version"] as String).replace('.', '_')}.${project.extra["yarn_mappings"] as String}-v2/minecraft-merged-67dccd55cc-${project.extra["minecraft_version"] as String}-net.fabricmc.yarn.${(project.extra["minecraft_version"] as String).replace('.', '_')}.${project.extra["yarn_mappings"] as String}-v2.jar"
+        )
+    }
+
 }
 
 java {
-    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-    // if it is present.
-    // If you remove this line, sources will not be generated.
     withSourcesJar()
 }
-
-
-
-// configure the maven publication
