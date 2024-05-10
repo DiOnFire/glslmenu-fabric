@@ -20,7 +20,7 @@ class GlslMenuResourceFactory(
         else -> {
             var stream = try {
                 javaClass.getResourceAsStream("/assets/${id.namespace}/${id.path}")
-            } catch(_ : Exception) {
+            } catch(e : Exception) {
                 null
             }
 
@@ -40,7 +40,7 @@ class GlslMenuResourceFactory(
         id : Identifier
     ) : BufferedReader = when {
         id.path.endsWith(".fsh") -> BufferedReader(InputStreamReader(getResource(id).get().inputStream))
-        id.path.endsWith(".json") && !id.path.endsWith("shader.json") -> openAsReader(Identifier("/shaders/core/shader.json"))
+        id.path.endsWith(".json") && !id.path.endsWith("shader.json") -> openAsReader(Identifier("shaders/core/shader.json"))
         else -> getResourceOrThrow(id).reader
     }!!
 }
