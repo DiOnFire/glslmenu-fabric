@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "glslmenu.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "MixinGameRenderer",
+    "MixinMouse",
+    "MixinTitleScreen"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

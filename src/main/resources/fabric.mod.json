@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "glslmenu",
+  "version": "${version}",
+  "name": "GLSL Menu",
+  "description": "Renders GLSL shaders in main menu!",
+  "authors": [
+    "_kisman_"
+  ],
+  "contact": {
+    "homepage": "https://github.com/kisman2000/glslmenu-fabric",
+    "sources": "https://github.com/kisman2000/glslmenu-fabric"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "glslmenu.GlslMenu"
+      }
+    ]
+  },
+  "mixins": [
+    "glslmenu.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=17",
+    "fabric-language-kotlin": ">=${fabric_kotlin_version}"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
