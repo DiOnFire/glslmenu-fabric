@@ -1,5 +1,6 @@
 package glslmenu
 
+import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.widget.SliderWidget
 import net.minecraft.text.Text
 
@@ -24,6 +25,11 @@ class IntSliderWidget(
 
     override fun updateMessage() {
         message = Text.literal("$name: $intValue")
+    }
+
+    override fun renderWidget(context: DrawContext?, mouseX: Int, mouseY: Int, delta: Float) {
+        active = Shaders.PROGRAMS.isNotEmpty()
+        super.renderWidget(context, mouseX, mouseY, delta)
     }
 
     override fun applyValue() {
