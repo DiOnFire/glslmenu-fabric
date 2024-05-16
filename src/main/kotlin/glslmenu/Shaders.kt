@@ -1,6 +1,9 @@
 package glslmenu
 
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
 
 object Shaders {
     private var INDEX = 0
@@ -9,7 +12,12 @@ object Shaders {
 
     fun createPrograms() {
         val directory = File(mc.runDirectory, "glslmenu")
-        val files = directory.listFiles()!!
+        val files = directory.listFiles()
+
+        if (files == null) {
+            Files.createDirectory(Paths.get(mc.runDirectory.path, "glslmenu"))
+            return
+        }
 
         for((index, file) in files.withIndex()) {
             val name = file.name
