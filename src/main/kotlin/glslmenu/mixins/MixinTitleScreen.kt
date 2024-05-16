@@ -1,10 +1,7 @@
 package glslmenu.mixins
 
 import com.mojang.blaze3d.systems.RenderSystem
-import glslmenu.GlslMenu
-import glslmenu.IntSliderWidget
-import glslmenu.ShaderButtonWidget
-import glslmenu.Shaders
+import glslmenu.*
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.gui.screen.TitleScreen
@@ -29,8 +26,9 @@ class MixinTitleScreen : Screen(
     private fun initTailHook(
         ci : CallbackInfo
     ) {
-        addDrawableChild(ShaderButtonWidget(1, 1, ButtonWidget.DEFAULT_WIDTH_SMALL, ButtonWidget.DEFAULT_HEIGHT))
-        addDrawableChild(IntSliderWidget(1, 2 + ButtonWidget.DEFAULT_HEIGHT, ButtonWidget.DEFAULT_WIDTH_SMALL, ButtonWidget.DEFAULT_HEIGHT, "Time Multiplier", 1, 1..5, GlslMenu.TIME_MULTIPLIER_SETTER)/* { GlslMenu.TIME_MULTIPLIER = it }*/)
+        addDrawableChild(ShaderButtonWidget(1, 1, 80, 18))
+        addDrawableChild(UpdateShadersListWidget(1, 2 + 18, 80, 18))
+        addDrawableChild(IntSliderWidget(1, 2 + 18 * 2, 80, 18, "Time Multiplier", 1, 1..5, GlslMenu.TIME_MULTIPLIER_SETTER)/* { GlslMenu.TIME_MULTIPLIER = it }*/)
     }
 
     @Inject(
